@@ -31,11 +31,11 @@ public class LoginControl {
 			if(menuNo == 1) {
 				//로그인
 				login();
-			}else if(menuNo == 2) {
+			} else if(menuNo == 2) {
 				//종료
 				exit();
 				break;
-			}else {
+			} else {
 				showInputError();
 			}
 		}

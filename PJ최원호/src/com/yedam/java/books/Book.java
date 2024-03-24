@@ -8,6 +8,7 @@ public class Book {
 	private int bNo; // 책번호
 	private String bTitle; // 책제목
 	private String bWriter; // 저자
+	private String bInfo; // 소개
 	private int bInventroy; // 재고
 	private Date bCreateDate; // 등록일
 	
@@ -33,6 +34,12 @@ public class Book {
 	public void setbWriter(String bWriter) {
 		this.bWriter = bWriter;
 	}
+	public String getbInfo() {
+		return bInfo;
+	}
+	public void setbInfo(String bInfo) {
+		this.bInfo = bInfo;
+	}
 	public int getbInventroy() {
 		return bInventroy;
 	}
@@ -48,8 +55,8 @@ public class Book {
 	
 	@Override
 	public String toString() {
-		return bNo + "\t| " + bTitle + "\t| " + bWriter + "\t| " + bInventroy
-				+ "\t| " + bCreateDate;
+		return bNo + " | " + bTitle + " | " + bWriter + " | " + bInfo + " | " + bInventroy
+				+ " | " + bCreateDate;
 	}
 	
 }

@@ -3,7 +3,7 @@ package com.yedam.java.member;
 public class Member {
 	private String memberId;
 	private String memberPassword;
-	// memberRole : 0 - 관리자, 1 - 일반 
+	// memberRole : 0 - 관리자, 1 - 일반
 	private int memberRole;
 	
 	public String getMemberId() {
