@@ -134,6 +134,7 @@ public class EmpDAO extends DAO {
 		} finally {
 			// 5. 자원해제
 			disconnect();
+			
 		}
 	}
 
