@@ -1,0 +1,55 @@
+package com.yedam.java.books;
+
+import java.sql.Date;
+
+// VO Class
+public class Book {
+	// 필드
+	private int bNo; // 책번호
+	private String bTitle; // 책제목
+	private String bWriter; // 저자
+	private int bInventroy; // 재고
+	private Date bCreateDate; // 등록일
+	
+	// 생성자
+	
+	// 메소드
+	// getter, setter
+	public int getbNo() {
+		return bNo;
+	}
+	public void setbNo(int bNo) {
+		this.bNo = bNo;
+	}
+	public String getbTitle() {
+		return bTitle;
+	}
+	public void setbTitle(String bTitle) {
+		this.bTitle = bTitle;
+	}
+	public String getbWriter() {
+		return bWriter;
+	}
+	public void setbWriter(String bWriter) {
+		this.bWriter = bWriter;
+	}
+	public int getbInventroy() {
+		return bInventroy;
+	}
+	public void setbInventroy(int bInventroy) {
+		this.bInventroy = bInventroy;
+	}
+	public Date getbCreateDate() {
+		return bCreateDate;
+	}
+	public void setbCreateDate(Date bCreateDate) {
+		this.bCreateDate = bCreateDate;
+	}
+	
+	@Override
+	public String toString() {
+		return bNo + "\t| " + bTitle + "\t| " + bWriter + "\t| " + bInventroy
+				+ "\t| " + bCreateDate;
+	}
+	
+}
