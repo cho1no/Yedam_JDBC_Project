@@ -45,8 +45,7 @@ public class Notice {
 	
 	@Override
 	public String toString() {
-		return "Notice [noticeKey=" + noticeKey + ", noticeTitle=" + noticeTitle + ", noticeDetail=" + noticeDetail
-				+ ", noticeWriter=" + noticeWriter + ", noticeWriteDay=" + noticeWriteDay + "]";
+		return noticeKey + " | " + noticeTitle + " | " + noticeWriter + " | " + noticeWriteDay;
 	}
 	
 	

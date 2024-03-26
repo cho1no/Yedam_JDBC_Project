@@ -7,7 +7,7 @@ import com.yedam.java.board.Notice;
 import com.yedam.java.books.Book;
 import com.yedam.java.books.BookRent;
 
-public class Management {
+public final class Management {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void showWelcome() {
@@ -61,6 +61,25 @@ public class Management {
 			for (T b : list) {
 				System.out.println(b);
 			}
+		}
+	}
+
+	public static boolean checkDel() {
+		boolean isDel = false;
+		// 삭제여부 확인
+		System.out.print("삭제를 진행하시겠습니까?(Y/N) > ");
+		String result = sc.nextLine();
+		if (result.equalsIgnoreCase("Y")) {
+			isDel = true;
+		}
+		return isDel;
+	}
+	
+	public static void dmlResult(int result, String dml) {
+		if (result > 0) {
+			System.out.println(dml + " 성공");
+		} else {
+			System.out.println(dml + " 실패");
 		}
 	}
 }

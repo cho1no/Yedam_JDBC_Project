@@ -97,15 +97,14 @@ public class NoticeDAO extends DAO{
 		try {
 			// DB 연결
 			connect();
-			
 			// 객체생성
 			String sql = "INSERT INTO board_notice "
-					   + "(notice_key, notice_title, notice_detail, notice_writer)"
-					   + "VALUES"
+					   + "(notice_key, notice_title, notice_detail, notice_writer) "
+					   + "VALUES "
 					   + "(board_notice_seq.NEXTVAL, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, nt.getNoticeTitle());
-			pstmt.setString(2, nt.getNoticeWriter());
+			pstmt.setString(2, nt.getNoticeDetail());
 			pstmt.setString(3, mem.getMemId());
 			
 			// SQL실행
@@ -135,7 +134,7 @@ public class NoticeDAO extends DAO{
 					   + "WHERE notice_key = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, nt.getNoticeTitle());
-			pstmt.setString(2, nt.getNoticeWriter());
+			pstmt.setString(2, nt.getNoticeDetail());
 			pstmt.setString(3, mem.getMemId());
 			pstmt.setInt(4, nt.getNoticeKey());
 			// SQL실행

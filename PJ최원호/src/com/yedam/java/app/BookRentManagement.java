@@ -61,12 +61,7 @@ public class BookRentManagement {
 		System.out.print("대여할 책 번호 입력 > ");
 		int select = Management.inputNumber();
 		int result = brDAO.newRent(select);
-		if (result > 0) {
-			System.out.println("대여에 성공하였습니다.");
-		} else {
-			System.out.println("대여에 실패하였습니다.");
-			System.out.println("책번호 또는 재고를 확인해주세요.");
-		}
+		Management.dmlResult(result, "도서 대여");
 	}
 
 	// 반납
@@ -76,11 +71,6 @@ public class BookRentManagement {
 		System.out.print("반납할 대여번호 입력 > ");
 		int select = Management.inputNumber();
 		int result = brDAO.updateRented(select);
-		if (result > 0) {
-			System.out.println("반납에 성공하였습니다.");
-		} else {
-			System.out.println("반납에 실패하였습니다.");
-			System.out.println("대여번호를 확인해주세요.");
-		}
+		Management.dmlResult(result, "도서 반납");
 	}
 }

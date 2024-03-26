@@ -113,40 +113,6 @@ public class BookDAO extends DAO{
 		}
 		return list;
 	}
-	// 등록시 중복된 책
-//	public boolean isExist(Book book) {
-//		boolean exist = false;
-//		try {
-//			// DB 연결
-//			connect();
-//			
-//			// 객체생성
-//			String sql = "SELECT * "
-//					   + "FROM books "
-//					   + "WHERE b_title = ? AND"
-//					   + "		b_writer = ? "
-//					   + "ORDER BY b_no";
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, book.getbTitle());
-//			pstmt.setString(2, book.getbWriter());
-//			
-//			// SQL실행
-//			rs = pstmt.executeQuery();
-//			
-//			// 결과처리
-//			if (rs.next()) {
-//				exist = true;
-//			}
-//			
-//		} catch(SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			// DB종료
-//			disconnect();
-//		}
-//		
-//		return exist;
-//	}
 	
 	// 책 저장
 	private Book setBook() throws SQLException {
@@ -156,7 +122,7 @@ public class BookDAO extends DAO{
 		book.setbTitle(rs.getString("b_title"));
 		book.setbWriter(rs.getString("b_writer"));
 		book.setbInfo(rs.getString("b_info"));
-		book.setbInventroy(rs.getInt("b_inventory"));
+		book.setbInventory(rs.getInt("b_inventory"));
 		book.setbCreateDate(rs.getDate("b_created_date"));
 		
 		return book;
@@ -178,7 +144,7 @@ public class BookDAO extends DAO{
 			pstmt.setString(1, book.getbTitle());
 			pstmt.setString(2, book.getbWriter());
 			pstmt.setString(3, book.getbInfo());
-			pstmt.setInt(4, book.getbInventroy());
+			pstmt.setInt(4, book.getbInventory());
 			
 			// SQL실행
 			result = pstmt.executeUpdate();
@@ -204,13 +170,15 @@ public class BookDAO extends DAO{
 			String sql = "UPDATE books "
 					   + "SET b_title = ?, "
 					   + "	  b_writer = ?,"
-					   + "	  b_info = ? "
+					   + "	  b_info = ?, "
+					   + "	  b_inventory = b_inventory + ? "
 					   + "WHERE b_no = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, book.getbTitle());
 			pstmt.setString(2, book.getbWriter());
 			pstmt.setString(3, book.getbInfo());
-			pstmt.setInt(4, book.getbNo());
+			pstmt.setInt(4, book.getbInventory());
+			pstmt.setInt(5, book.getbNo());
 			// SQL실행
 			result = pstmt.executeUpdate();
 			

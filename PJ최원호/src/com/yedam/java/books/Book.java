@@ -9,7 +9,7 @@ public class Book {
 	private String bTitle; // 책제목
 	private String bWriter; // 저자
 	private String bInfo; // 소개
-	private int bInventroy; // 재고
+	private int bInventory; // 재고
 	private Date bCreateDate; // 등록일
 	
 	// 생성자
@@ -40,11 +40,11 @@ public class Book {
 	public void setbInfo(String bInfo) {
 		this.bInfo = bInfo;
 	}
-	public int getbInventroy() {
-		return bInventroy;
+	public int getbInventory() {
+		return bInventory;
 	}
-	public void setbInventroy(int bInventroy) {
-		this.bInventroy = bInventroy;
+	public void setbInventory(int bInventory) {
+		this.bInventory = bInventory;
 	}
 	public Date getbCreateDate() {
 		return bCreateDate;
@@ -55,7 +55,7 @@ public class Book {
 	
 	@Override
 	public String toString() {
-		return bNo + " | " + bTitle + " | " + bWriter + " | " + bInfo + " | " + bInventroy
+		return bNo + " | " + bTitle + " | " + bWriter + " | " + bInfo + " | " + bInventory
 				+ " | " + bCreateDate;
 	}
 	

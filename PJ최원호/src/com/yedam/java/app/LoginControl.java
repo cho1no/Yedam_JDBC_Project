@@ -73,7 +73,7 @@ public class LoginControl {
 			return;
 
 		// 성공할 경우 프로그램을 실행
-		new BookManagement().run();
+		new BookBoardManagement().run();
 	}
 
 	private Member inputMember() {

@@ -71,7 +71,6 @@ public class BookManagement {
 		return Management.inputNumber();
 	}
 
-
 	private void selectBookAll() {
 		// 도서정보 전체조회
 		List<Book> list = bookDAO.selectBookAll();
@@ -79,7 +78,7 @@ public class BookManagement {
 		// 성공 / 실패
 		Management.showList(list);
 	}
-	
+
 	private void searchBook() {
 		// 검색어 입력
 		System.out.print("검색어 입력 > ");
@@ -89,19 +88,7 @@ public class BookManagement {
 		// 결과관리
 		Management.showList(list);
 	}
-	
-//	private void showBooks(List<Book> list) {
-//		// 결과관리
-//		// 성공 / 실패
-//		if (list.isEmpty()) { // 실패
-//			System.out.println("데이터가 존재하지 않습니다.");
-//		} else { // 성공
-//			System.out.println("도서번호 | 도서이름 | 도서저자 | 소개 | 재고 | 등록일");
-//			for (Book b : list) {
-//				System.out.println(b);
-//			}
-//		}
-//	}
+
 	private Book inputBook() {
 		Book book = new Book();
 		System.out.print("도서제목 > ");
@@ -111,90 +98,57 @@ public class BookManagement {
 		System.out.print("도서소개 > ");
 		book.setbInfo(sc.nextLine());
 		System.out.print("재고 > ");
-		book.setbInventroy(Management.inputNumber());
+		book.setbInventory(Management.inputNumber());
 		return book;
 	}
-	
+
 	private void insertBook() {
 		// 전체 입력
 		Book book = inputBook();
-		
+
 		// 정보 등록
 		int result = bookDAO.insertBook(book);
-		
-		// 결과 처리
-		if (result > 0) { // 성공
-			System.out.println("정상적으로 등록되었습니다.");
-		} else { // 실패 (중복->재고추가)
-//			if (bookDAO.isExist(book)) {
-//				System.out.println("중복된 책이 존재합니다.");
-//			} else {
-				System.out.println("정상적으로 등록되지 않았습니다.");
-				System.out.println("정보를 확인해주세요.");
-			//}
-		}
+
+		// 결과처리
+		Management.dmlResult(result, "도서 등록");
 	}
-	
+
 	private void updateBook() {
 		// 수정 정보 입력
-		Book book = changeBookInfo();
-		
+		System.out.println("재고 입력 시 재고가 추가됩니다.");
+		System.out.print("수정할 책 번호 입력 > ");
+		int update = Management.inputNumber();
+		Book book = inputBook();
+		book.setbNo(update);
+
 		// 정보 등록
 		int result = bookDAO.updateBook(book);
 		
-		// 결과 처리
-		if (result > 0) { // 성공
-			System.out.println("정상적으로 등록되었습니다.");
-		} else { // 실패
-			System.out.println("정상적으로 등록되지 않았습니다.");
-			System.out.println("정보를 확인해주세요.");
-		}
+		// 결과처리
+		Management.dmlResult(result, "도서 수정");
 	}
-	
-	private Book changeBookInfo() {
-		Book book = new Book();
 
-		book.setbNo(inputBNo());
-		System.out.print("도서제목 > ");
-		book.setbTitle(sc.nextLine());
-		System.out.print("도서저자 > ");
-		book.setbWriter(sc.nextLine());
-		return book;
-	}
-	
 	private void deleteBook() {
 		// 삭제할 도서번호
 		int bNo = inputBNo();
-		
+
 		// 추가 프로세스
 		boolean isDelete = checkBookDel(bNo);
-		if (!isDelete) return; 
-		
+		if (!isDelete)
+			return;
+
 		// 해당 도서 삭제
 		int result = bookDAO.deleteBook(bNo);
-		
+
 		// 결과 처리
-		if(result > 0) {
-			System.out.println("정상적으로 삭제되었습니다.");
-			System.out.println("도서번호 : " + bNo);
-		}else {
-			System.out.println("정상적으로 삭제되지 않았습니다.");
-			System.out.println("정보를 확인해주세요.");
-		}
+		Management.dmlResult(result, "도서 삭제");
 	}
-	
+
 	private boolean checkBookDel(int bNo) {
-		boolean isDel = false;
 		// 정보 출력
 		System.out.println("도서번호 | 도서이름 | 도서저자 | 소개 | 재고 | 등록일");
 		System.out.println(bookDAO.selectBook(bNo));
-		
-		// 삭제여부 확인
-		System.out.println("삭제를 진행하시겠습니까?(Y/N) > ");
-		String result = sc.nextLine();
-		if (result.equalsIgnoreCase("Y")) {
-			isDel = true;
-		}
-		return isDel;
+
+		return Management.checkDel();
 	}
 }
