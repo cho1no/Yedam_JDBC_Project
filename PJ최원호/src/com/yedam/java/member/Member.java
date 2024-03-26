@@ -4,6 +4,7 @@ public class Member {
 	// 필드
 	private String memId; // id
 	private String memPw; // pw
+	private String memTel; // tell
 	private int memLevel; // 0~8 : 일반, 9 : 관리자
 	
 	//메소드
@@ -18,6 +19,12 @@ public class Member {
 	}
 	public void setMemPw(String memPw) {
 		this.memPw = memPw;
+	}
+	public String getMemTel() {
+		return memTel;
+	}
+	public void setMemTel(String memTel) {
+		this.memTel = memTel;
 	}
 	public int getMemLevel() {
 		return memLevel;

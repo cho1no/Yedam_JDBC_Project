@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.yedam.java.books.Book;
 import com.yedam.java.books.BookDAO;
+import com.yedam.java.common.Management;
 
 public class BookManagement {
 	// 필드
@@ -19,77 +20,64 @@ public class BookManagement {
 
 	// 메소드
 	public void run() {
+		int level = LoginControl.userLevel(); // 로그인 계급별 메뉴
 		while (true) {
 			// 메뉴 출력
-			menuPrint();
+			menuPrint(level);
 			// 메뉴 선택
-			int menu = selectMenu();
+			int menu = Management.selectMenu();
 			// 메뉴 실행
 			if (menu == 1) { // 전체조회
 				selectBookAll();
 			} else if (menu == 2) { // 도서검색
 				searchBook();
-			} else if (menu == 3) { // 도서등록
+			} else if (menu == 3 && level >= 0) { // 도서대출
+				new BookRentManagement().run();
+			} else if (menu == 4 && level == 9) { // 도서등록
 				insertBook();
-			} else if (menu == 4) { // 도서수정
+			} else if (menu == 5 && level == 9) { // 도서수정
 				updateBook();
-			} else if (menu == 5) { // 도서삭제
+			} else if (menu == 6 && level == 9) { // 도서삭제
 				deleteBook();
-			} else if (menu == 9) { // 종료
-				end();
+			} else if (menu == 9) { // 탈출
+				Management.exit();
 				break;
 			} else {
-				showError();
+				Management.showError();
 			}
 		}
 	}
 
-	private void end() {
-		System.out.println("프로그램이 종료되었습니다.");
-	}
-
-	private void showError() {
-		System.out.println("메뉴에서 선택해주세요.");
-	}
-
-	private void menuPrint() {
+	private void menuPrint(int level) {
 		String menu = "";
 		menu += "1.전체조회 ";
 		menu += "2.도서검색 ";
-		menu += "3.도서등록 ";
-		menu += "4.도서수정 ";
-		menu += "5.도서삭제 ";
-		menu += "9.종료 ";
+		if (level >= 0)
+			menu += "3.도서대출 ";
+		if (level == 9) {
+			menu += "4.도서등록 ";
+			menu += "5.도서수정 ";
+			menu += "6.도서삭제 ";
+		}
+		menu += "9.뒤로가기 ";
 
-		System.out.println("===");
+		System.out.println("==========================================");
 		System.out.println(menu);
-		System.out.println("===");
+		System.out.println("==========================================");
 	}
 
-	private int selectMenu() {
-		System.out.print("선택 > ");
-		return inputNumber();
-	}
 	private int inputBNo() {
 		System.out.print("도서번호 > ");
-		return inputNumber();
+		return Management.inputNumber();
 	}
-	private int inputNumber() {
-		int num = 0;
-		try {
-			num = Integer.parseInt(sc.nextLine());
-		} catch (NumberFormatException e) {
-			System.out.println("숫자로 입력해주시기 바랍니다.");
-		}
-		return num;
-	}
+
 
 	private void selectBookAll() {
 		// 도서정보 전체조회
 		List<Book> list = bookDAO.selectBookAll();
 		// 결과관리
 		// 성공 / 실패
-		showBooks(list);
+		Management.showList(list);
 	}
 	
 	private void searchBook() {
@@ -99,29 +87,31 @@ public class BookManagement {
 		// 단건조회
 		List<Book> list = bookDAO.searchBook(search);
 		// 결과관리
-		showBooks(list);
+		Management.showList(list);
 	}
 	
-	private void showBooks(List<Book> list) {
-		// 결과관리
-		// 성공 / 실패
-		if (list.isEmpty()) { // 실패
-			System.out.println("데이터가 존재하지 않습니다.");
-		} else { // 성공
-			System.out.println("도서번호 | 도서이름 | 도서저자 | 소개 | 재고 | 등록일");
-			for (Book b : list) {
-				System.out.println(b);
-			}
-		}
-	}
+//	private void showBooks(List<Book> list) {
+//		// 결과관리
+//		// 성공 / 실패
+//		if (list.isEmpty()) { // 실패
+//			System.out.println("데이터가 존재하지 않습니다.");
+//		} else { // 성공
+//			System.out.println("도서번호 | 도서이름 | 도서저자 | 소개 | 재고 | 등록일");
+//			for (Book b : list) {
+//				System.out.println(b);
+//			}
+//		}
+//	}
 	private Book inputBook() {
 		Book book = new Book();
 		System.out.print("도서제목 > ");
 		book.setbTitle(sc.nextLine());
 		System.out.print("도서저자 > ");
 		book.setbWriter(sc.nextLine());
-		System.out.println("재고 > ");
-		book.setbInventroy(inputNumber());
+		System.out.print("도서소개 > ");
+		book.setbInfo(sc.nextLine());
+		System.out.print("재고 > ");
+		book.setbInventroy(Management.inputNumber());
 		return book;
 	}
 	
@@ -135,9 +125,13 @@ public class BookManagement {
 		// 결과 처리
 		if (result > 0) { // 성공
 			System.out.println("정상적으로 등록되었습니다.");
-		} else { // 실패
-			System.out.println("정상적으로 등록되지 않았습니다.");
-			System.out.println("정보를 확인해주세요.");
+		} else { // 실패 (중복->재고추가)
+//			if (bookDAO.isExist(book)) {
+//				System.out.println("중복된 책이 존재합니다.");
+//			} else {
+				System.out.println("정상적으로 등록되지 않았습니다.");
+				System.out.println("정보를 확인해주세요.");
+			//}
 		}
 	}
 	

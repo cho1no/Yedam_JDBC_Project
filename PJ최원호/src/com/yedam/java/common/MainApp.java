@@ -1,9 +1,9 @@
 package com.yedam.java.common;
 
-import com.yedam.java.app.BookManagement;
+import com.yedam.java.app.NoticeManagement;
 
 public class MainApp {
 	public static void main(String[] args) {
-		new BookManagement().run();
+		new NoticeManagement().run();
 	}
 }
