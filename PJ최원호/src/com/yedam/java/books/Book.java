@@ -58,10 +58,10 @@ public class Book {
 	@Override
 	public String toString() {
 		String text = "";
-		text += String.format("%7d", bNo) + " | ";
-		text += Management.setLength(bTitle, 30) + "\t | ";
-		text += Management.setLength(bWriter, 20) + "\t | ";
-		text += String.format("%2d", bInventory) + "권 | ";
+		text += Management.setLength(Integer.toString(bNo), Management.BOOK_ID_LEN) + " | ";
+		text += Management.setLength(bTitle, Management.BOOK_TITLE_LEN) + "\t | ";
+		text += Management.setLength(bWriter, Management.BOOK_WRITER_LEN) + "\t | ";
+		text += Management.setLength(bInventory+"권", Management.BOOK_INVENTORY_LEN) + "\t | ";
 		text += bCreateDate;
 		return  text;
 	}

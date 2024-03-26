@@ -53,7 +53,7 @@ public class BookManagement {
 		menu += "1.전체조회 ";
 		menu += "2.도서검색 ";
 		if (level >= 0)
-			menu += "3.도서대출 ";
+			menu += "3.도서대여 ";
 		if (level == 9) {
 			menu += "4.도서등록 ";
 			menu += "5.도서수정 ";

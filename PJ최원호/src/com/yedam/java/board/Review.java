@@ -85,16 +85,16 @@ public class Review {
 	public String toString() {
 		String text = "";
 		if (reKey != 0)
-			text +=  reKey + " | ";
+			text +=  Management.setLength(Integer.toString(reKey), Management.KEY_LEN) + " | ";
 		if (bNo != 0)
-			text += String.format("%5d",bNo) + " | ";
+			text += Management.setLength(Integer.toString(bNo), Management.BOOK_ID_LEN) + " | ";
 		if (bTitle != null)
-			text += Management.setLength(bTitle, 30) + " | ";
+			text += Management.setLength(bTitle, Management.BOOK_TITLE_LEN) + "\t | ";
 		if (bWriter != null) {
-			text += Management.setLength(bWriter, 12) + " | ";
+			text += Management.setLength(bWriter, Management.BOOK_WRITER_LEN) + "\t | ";
 		}
 		if (reDetail != null)
-			text += reDetail + " | ";
+			text += Management.setLength(reDetail, Management.BOOK_TITLE_LEN+1) + "\t | ";
 		// 별그리기
 		for (int i = 0; i < reRate; i++) {
 			text += "★";
@@ -103,7 +103,7 @@ public class Review {
 			text += "☆";
 		}
 		if (reWriter != null)
-			text += " | " + reWriter + " | ";
+			text += " | " + Management.setLength(reWriter, Management.USER_ID_LEN) + " | ";
 		if (reWriteDay != null)
 			text += reWriteDay;
 		return text;

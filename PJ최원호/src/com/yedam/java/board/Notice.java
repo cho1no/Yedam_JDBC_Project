@@ -48,9 +48,9 @@ public class Notice {
 	@Override
 	public String toString() {
 		String text = "";
-		text += String.format("%5d", noticeKey) + " | ";
-		text += Management.setLength(noticeTitle, 30) + "\t | ";
-		text += Management.setLength(noticeWriter, 10) + " | ";
+		text += Management.setLength(Integer.toString(noticeKey), Management.KEY_LEN) + " | ";
+		text += Management.setLength(noticeTitle, Management.BOOK_TITLE_LEN) + "\t | ";
+		text += Management.setLength(noticeWriter, Management.USER_ID_LEN) + " | ";
 		text += noticeWriteDay;
 		return text;
 	}

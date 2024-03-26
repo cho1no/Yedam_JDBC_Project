@@ -1,12 +1,17 @@
 package com.yedam.java.common;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Scanner;
 
 public final class Management {
 	static Scanner sc = new Scanner(System.in);
-
+	public static final int BOOK_TITLE_LEN = 24;
+	public static final int BOOK_ID_LEN = 6;
+	public static final int BOOK_WRITER_LEN = 20;
+	public static final int BOOK_INVENTORY_LEN = 5;
+	public static final int USER_ID_LEN = 11;
+	public static final int KEY_LEN = 6;
+	
 	public static void showWelcome() {
 		System.out.println("도서대출시스템에 오신것을 환영합니다.");
 	}
@@ -65,30 +70,37 @@ public final class Management {
 	public static void showListTitle(String title) {
 		String listTitle = "";
 		if (title == "Book") {
-			listTitle = "도서번호" + " | "
-					  + setLength("도서이름",30) + "\t | "
-					  + setLength("도서저자",20) + "\t | "
+			listTitle = setLength("도서번호", BOOK_ID_LEN) + " | "
+					  + setLength("도서이름", BOOK_TITLE_LEN) + "\t | "
+					  + setLength("도서저자", BOOK_WRITER_LEN) + "\t | "
 //					  + "소개" + " | "
-					  + "재고" + " | "
+					  + setLength("재고", BOOK_INVENTORY_LEN) + "\t | "
 					  + "등록일";
 		} else if (title == "BookRent") {
-			listTitle = "대여번호 | 책번호 | 책이름 | 저자 | 빌린사람 | 대여일 | 반납일 | 반납여부";
+			listTitle = setLength("대여번호", KEY_LEN-1) + " | "
+					  + setLength("도서번호", BOOK_ID_LEN) + " | "
+					  + setLength("도서이름", BOOK_TITLE_LEN) + "\t | "
+					  + setLength("도서저자", BOOK_WRITER_LEN) + "\t | "
+					  + setLength("빌린사람", USER_ID_LEN) + "\t | "
+					  + "대여일       | "
+					  + "반납일       | "
+					  + "반납여부";
 		} else if (title == "Notice") {
-			listTitle = setLength("글번호", 5) +  " | "
-					  + setLength("제목", 30) + "\t | "
-					  + setLength("작성자", 11) + " | "
+			listTitle = setLength("글번호", KEY_LEN+2) +  " | "
+					  + setLength("제목", BOOK_TITLE_LEN) + " | "
+					  + setLength("작성자", USER_ID_LEN+2) + " | "
 					  + "작성일";
 		} else if (title == "ReviewGroup") {
-			listTitle = "책번호 | "
-					  + "책제목 | "
-					  + "작성자 | "
+			listTitle = setLength("도서번호", BOOK_ID_LEN) + " | "
+					  + setLength("도서이름", BOOK_TITLE_LEN) + "\t | "
+					  + setLength("도서저자", BOOK_WRITER_LEN) + "\t | "
 					  + "평점";
 		} else if (title == "ReviewBook") {
-			listTitle = "대여번호 | "
-					  + "책제목 | "
-					  + "한줄평 | "
-					  + "평점 | "
-					  + "작성자 | "
+			listTitle = setLength("리뷰번호", KEY_LEN-1) + " | "
+					  + setLength("도서이름", BOOK_TITLE_LEN) + "\t | "
+					  + setLength("한줄평", BOOK_TITLE_LEN) + "\t | "
+					  + setLength("평점", 7) + " | "
+					  + setLength("작성자", USER_ID_LEN+2) + " | "
 					  + "작성일";
 		} else {
 			listTitle = "===";

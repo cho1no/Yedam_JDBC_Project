@@ -85,7 +85,7 @@ public class ReviewManagement {
 		re.setbNo(selectBookNum());
 		System.out.print("내용 > ");
 		re.setReDetail(sc.nextLine());
-		System.out.println("평점 > ");
+		System.out.print("평점 > ");
 		int rate = Management.inputNumber();
 		if (rate > 5) rate = 5;
 		if (rate < 0) rate = 0;

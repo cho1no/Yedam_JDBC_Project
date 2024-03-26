@@ -2,6 +2,8 @@ package com.yedam.java.books;
 
 import java.sql.Date;
 
+import com.yedam.java.common.Management;
+
 //VO CLASS
 public class BookRent {
 	// 필드
@@ -81,8 +83,16 @@ public class BookRent {
 	// toString
 	@Override
 	public String toString() {
-		return  rentKey + " | " + bNo + " | " + bTitle + " | " + bWriter + " | " + renter
-				+ " | " + start + " | " + end + " | " + ((isReturn == 0) ? "대여중" : "반납완료");
+		String text = "";
+		text += Management.setLength(Integer.toString(rentKey), Management.KEY_LEN) + " | ";
+		text += Management.setLength(Integer.toString(bNo), Management.BOOK_ID_LEN) + " | ";
+		text += Management.setLength(bTitle, Management.BOOK_TITLE_LEN) + "\t | ";
+		text += Management.setLength(bWriter, Management.BOOK_WRITER_LEN) + "\t | ";
+		text += Management.setLength(renter, Management.USER_ID_LEN) + "\t | ";
+		text += start + " | ";
+		text += end + " | ";
+		text += ((isReturn == 0) ? "대여중" : "반납완료");
+		return text;
 	}
 
 }
