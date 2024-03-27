@@ -6,16 +6,12 @@ import java.util.List;
 
 import com.yedam.java.app.LoginControl;
 import com.yedam.java.common.DAO;
-import com.yedam.java.member.Member;
 
 public class BookRentDAO extends DAO{
-	private Member mem = null;
 	// 싱글톤
 	private static BookRentDAO bookRentDAO = null;
 	
-	private BookRentDAO() {
-		mem = LoginControl.getLoginInfo();
-	}
+	private BookRentDAO() {}
 
 	public static BookRentDAO getInstance() {
 		if (bookRentDAO == null)
@@ -36,7 +32,7 @@ public class BookRentDAO extends DAO{
 					   + "FROM book_rental_list br "
 					   + "	JOIN books b "
 					   + "	ON br.b_no = b.b_no "
-					   + "WHERE br.renter = '" + mem.getMemId() + "' ";
+					   + "WHERE br.renter = '" + LoginControl.userId() + "' ";
 			if (!isAll) {
 				sql += "AND br.isreturn = 0 ";
 			}
@@ -120,19 +116,16 @@ public class BookRentDAO extends DAO{
 				+ "rent_key"
 				+ ", b_no"
 				+ ", renter"
-				+ ", renter_tel"
 				+ ")"
 				+ "VALUES"
 				+ "("
 				+ "rental_list_seq.NEXTVAL"
 				+ ", ?"
 				+ ", ?"
-				+ ", ?"
 				+ ")";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bNo);
-			pstmt.setString(2, mem.getMemId());
-			pstmt.setString(3, mem.getMemTel());
+			pstmt.setString(2, LoginControl.userId());
 			
 			// SQL실행
 			result = pstmt.executeUpdate();		

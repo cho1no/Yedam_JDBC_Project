@@ -15,10 +15,15 @@ public class LoginControl {
 		return loginInfo;
 	}
 
-	// 권한체크
+	// 권한반환
 	public static int userLevel() {
 		int memLevel = loginInfo.getMemLevel();
 		return memLevel;
+	}
+	// 이름반환
+	public static String userId() {
+		String memId = loginInfo.getMemId();
+		return memId;
 	}
 
 	public void run() {

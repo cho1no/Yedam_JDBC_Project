@@ -82,9 +82,11 @@ public class NoticeManagement {
 
 	private String showDetail(Notice nt) {
 		String details = "";
+		details += "-----------------------------------\n";
 		details += "제목 : " + nt.getNoticeTitle() + "\n";
 		details += "내용 : " + nt.getNoticeDetail() + "\n";
-		details += "글쓴이 : " + nt.getNoticeWriter() + " | 작성일 : " + nt.getNoticeWriteDay();
+		details += "글쓴이 : " + nt.getNoticeWriter() + " | 작성일 : " + nt.getNoticeWriteDay() + "\n";
+		details += "-----------------------------------";
 		return details;
 	}
 
@@ -100,7 +102,6 @@ public class NoticeManagement {
 	// 삽입
 	private void insertNotice() {
 		Notice nt = inputNotice();
-		System.out.println(nt.getNoticeDetail());
 		int result = ntDAO.insertNotice(nt);
 		Management.dmlResult(result, "공지사항 추가");
 	}

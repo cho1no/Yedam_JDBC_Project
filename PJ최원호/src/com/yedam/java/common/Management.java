@@ -50,17 +50,26 @@ public final class Management {
 			String listName = "";
 			if (list.get(0) instanceof Book) {
 				listName = "도서번호 | 도서이름 | 도서저자 | 소개 | 재고 | 등록일";
-			}
-			if (list.get(0) instanceof BookRent) {
+			} else if (list.get(0) instanceof BookRent) {
 				listName = "대여번호 | 책번호 | 책이름 | 저자 | 빌린사람 | 대여일 | 반납일 | 반납여부";
-			}
-			if (list.get(0) instanceof Notice) {
+			} else if (list.get(0) instanceof Notice) {
 				listName = "글번호 | 제목 | 작성자 | 작성일";
+			} else {
+				listName = "===";
 			}
+			
 			System.out.println(listName);
 			for (T b : list) {
 				System.out.println(b);
 			}
+		}
+	}
+
+	public static void dmlResult(int result, String dml) {
+		if (result > 0) {
+			System.out.println(dml + " 성공");
+		} else {
+			System.out.println(dml + " 실패");
 		}
 	}
 
@@ -75,11 +84,4 @@ public final class Management {
 		return isDel;
 	}
 	
-	public static void dmlResult(int result, String dml) {
-		if (result > 0) {
-			System.out.println(dml + " 성공");
-		} else {
-			System.out.println(dml + " 실패");
-		}
-	}
 }

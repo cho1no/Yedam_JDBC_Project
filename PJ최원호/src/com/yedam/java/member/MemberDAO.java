@@ -8,8 +8,7 @@ public class MemberDAO extends DAO {
 	// 싱글톤
 	private static MemberDAO memberDAO = null;
 
-	private MemberDAO() {
-	}
+	private MemberDAO() {}
 
 	public static MemberDAO getInstance() {
 		if (memberDAO == null) {

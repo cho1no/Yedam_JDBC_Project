@@ -2,7 +2,7 @@ package com.yedam.java.app;
 
 import com.yedam.java.common.Management;
 
-public class BookBoardManagement {
+public class BoardManagement {
 	public void run() {
 		while (true) {
 
@@ -13,9 +13,9 @@ public class BookBoardManagement {
 			int menu = Management.selectMenu();
 
 			if (menu == 1) {
-				new BookManagement().run();
+				new ReviewManagement().run();
 			} else if (menu == 2) {
-				new BoardManagement().run();
+				new NoticeManagement().run();
 			}else if(menu == 9){
 				Management.exit();
 				break;
@@ -26,9 +26,9 @@ public class BookBoardManagement {
 	}
 	private void menuPrint() {
 		String menu = "";
-		menu += "1.도서 ";
-		menu += "2.게시판 ";
-		menu += "9.로그아웃 ";
+		menu += "1.후기게시판 ";
+		menu += "2.공지사항 ";
+		menu += "9.뒤로가기 ";
 		
 		System.out.println("===");
 		System.out.println(menu);

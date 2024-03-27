@@ -6,16 +6,12 @@ import java.util.List;
 
 import com.yedam.java.app.LoginControl;
 import com.yedam.java.common.DAO;
-import com.yedam.java.member.Member;
 
 public class NoticeDAO extends DAO{
-	private Member mem = null;
 	// 싱글톤
 	private static NoticeDAO ntDAO = null;
 	
-	private NoticeDAO() {
-		mem = LoginControl.getLoginInfo();
-	}
+	private NoticeDAO() {}
 	
 	public static NoticeDAO getInstance() {
 		if (ntDAO == null)
@@ -105,7 +101,7 @@ public class NoticeDAO extends DAO{
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, nt.getNoticeTitle());
 			pstmt.setString(2, nt.getNoticeDetail());
-			pstmt.setString(3, mem.getMemId());
+			pstmt.setString(3, LoginControl.userId());
 			
 			// SQL실행
 			result = pstmt.executeUpdate();
@@ -135,7 +131,7 @@ public class NoticeDAO extends DAO{
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, nt.getNoticeTitle());
 			pstmt.setString(2, nt.getNoticeDetail());
-			pstmt.setString(3, mem.getMemId());
+			pstmt.setString(3, LoginControl.userId());
 			pstmt.setInt(4, nt.getNoticeKey());
 			// SQL실행
 			result = pstmt.executeUpdate();
