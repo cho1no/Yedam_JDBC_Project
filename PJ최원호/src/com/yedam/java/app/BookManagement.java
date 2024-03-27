@@ -76,6 +76,7 @@ public class BookManagement {
 		List<Book> list = bookDAO.selectBookAll();
 		// 결과관리
 		// 성공 / 실패
+		Management.showListTitle("Book");
 		Management.showList(list);
 	}
 
@@ -86,9 +87,10 @@ public class BookManagement {
 		// 단건조회
 		List<Book> list = bookDAO.searchBook(search);
 		// 결과관리
+		Management.showListTitle("Book");
 		Management.showList(list);
 	}
-
+	
 	private Book inputBook() {
 		Book book = new Book();
 		System.out.print("도서제목 > ");

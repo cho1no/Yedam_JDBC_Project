@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.yedam.java.app.LoginControl;
 import com.yedam.java.common.DAO;
-
 public class NoticeDAO extends DAO{
 	// 싱글톤
 	private static NoticeDAO ntDAO = null;
@@ -38,8 +37,11 @@ public class NoticeDAO extends DAO{
 			
 			// 결과처리
 			while(rs.next()) {
-				
-				list.add(setNotice());
+				Notice nt = setNotice();
+//				String text = Management.setLength(nt.getNoticeTitle(), 12);
+//				nt.setNoticeTitle(text);
+				//nt.setNoticeWriter(Management.setLength(nt.getNoticeWriter(),5));
+				list.add(nt);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

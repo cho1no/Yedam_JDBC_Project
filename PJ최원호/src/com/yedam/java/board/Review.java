@@ -2,6 +2,8 @@ package com.yedam.java.board;
 
 import java.sql.Date;
 
+import com.yedam.java.common.Management;
+
 public class Review {
 	// 필드
 	private int reKey;
@@ -82,17 +84,18 @@ public class Review {
 	@Override
 	public String toString() {
 		String text = "";
-		if (reKey != 0) {
-			text += reKey + " | ";
-		}
+		if (reKey != 0)
+			text +=  reKey + " | ";
 		if (bNo != 0)
-			text += bNo + " | ";
+			text += String.format("%5d",bNo) + " | ";
 		if (bTitle != null)
-			text += bTitle + " | ";
-		if (bWriter != null)
-			text += bWriter + " | ";
+			text += Management.setLength(bTitle, 30) + " | ";
+		if (bWriter != null) {
+			text += Management.setLength(bWriter, 12) + " | ";
+		}
 		if (reDetail != null)
 			text += reDetail + " | ";
+		// 별그리기
 		for (int i = 0; i < reRate; i++) {
 			text += "★";
 		}

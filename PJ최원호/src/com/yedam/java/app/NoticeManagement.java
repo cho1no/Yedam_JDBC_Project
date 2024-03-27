@@ -65,6 +65,7 @@ public class NoticeManagement {
 	// 공지사항 목록 보기
 	private void showNoticeList() {
 		List<Notice> list = ntDAO.selectNoticeAll();
+		Management.showListTitle("Notice");
 		Management.showList(list);
 	}
 

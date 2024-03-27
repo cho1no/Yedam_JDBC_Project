@@ -62,12 +62,14 @@ public class ReviewManagement {
 	// 책별 리뷰 목록
 	private void showReviewList() {
 		List<Review> list = reDAO.selectReviewAll();
+		Management.showListTitle("ReviewGroup");
 		Management.showList(list);
 	}
 	
 	// 책 리뷰 모음
 	private void showReviewBook() {
 		List<Review> list = reDAO.selectReviewGroup(selectBookNum());
+		Management.showListTitle("ReviewBook");
 		Management.showList(list);
 	}
 	private int selectBookNum() {

@@ -2,6 +2,8 @@ package com.yedam.java.board;
 
 import java.sql.Date;
 
+import com.yedam.java.common.Management;
+
 public class Notice {
 	// 필드
 	private int noticeKey;
@@ -45,7 +47,12 @@ public class Notice {
 	
 	@Override
 	public String toString() {
-		return noticeKey + " | " + noticeTitle + " | " + noticeWriter + " | " + noticeWriteDay;
+		String text = "";
+		text += String.format("%5d", noticeKey) + " | ";
+		text += Management.setLength(noticeTitle, 30) + "\t | ";
+		text += Management.setLength(noticeWriter, 10) + " | ";
+		text += noticeWriteDay;
+		return text;
 	}
 	
 	

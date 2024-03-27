@@ -2,6 +2,8 @@ package com.yedam.java.books;
 
 import java.sql.Date;
 
+import com.yedam.java.common.Management;
+
 // VO Class
 public class Book {
 	// 필드
@@ -55,8 +57,13 @@ public class Book {
 	
 	@Override
 	public String toString() {
-		return bNo + " | " + bTitle + " | " + bWriter + " | " + bInfo + " | " + bInventory
-				+ " | " + bCreateDate;
+		String text = "";
+		text += String.format("%7d", bNo) + " | ";
+		text += Management.setLength(bTitle, 30) + "\t | ";
+		text += Management.setLength(bWriter, 20) + "\t | ";
+		text += String.format("%2d", bInventory) + "권 | ";
+		text += bCreateDate;
+		return  text;
 	}
 	
 }

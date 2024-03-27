@@ -47,9 +47,10 @@ public class BookRentManagement {
 		System.out.println("================================");
 	}
 	
-	// 반납기로 전체조회
+	// 반납기록 전체조회
 	private void showRentalList(boolean isAll) {
 		List<BookRent> list = brDAO.selectRentBook(isAll);
+		Management.showListTitle("BookRent");
 		Management.showList(list);
 	}
 	
@@ -57,6 +58,7 @@ public class BookRentManagement {
 	private void rentBook() {
 		List<Book> list = bookDAO.selectBookAll();
 		// 대여할 book list 보여주기
+		Management.showListTitle("Book");
 		Management.showList(list);
 		System.out.print("대여할 책 번호 입력 > ");
 		int select = Management.inputNumber();
