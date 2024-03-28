@@ -14,7 +14,7 @@ public class BookRent {
 	private String renter;
 	private Date start;
 	private Date end;
-	private int isReturn; // 반납여부 : 0 -> 미반납, 1 -> 반납
+	private int isReturn; // 반납여부 : -1 -> 연체, 0 -> 미반납, 1 -> 반납
 
 	// 메소드
 	// get, set
@@ -91,7 +91,10 @@ public class BookRent {
 		text += Management.setLength(renter, Management.USER_ID_LEN) + "\t | ";
 		text += start + " | ";
 		text += end + " | ";
-		text += ((isReturn == 0) ? "대여중" : "반납완료");
+		if (isReturn == 2) text += "연체";
+		else if (isReturn == 1) text += "반납완료";
+		else text += "대여중"; 
+//		text += ((isReturn == 0) ? "대여중" : "반납완료");
 		return text;
 	}
 

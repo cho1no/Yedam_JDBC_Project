@@ -30,8 +30,8 @@ public class BookBoardManagement {
 		menu += "2.게시판 ";
 		menu += "9.로그아웃 ";
 		
-		System.out.println("===");
+		System.out.println("========= menu =========");
 		System.out.println(menu);
-		System.out.println("===");
+		System.out.println("========================");
 	}
 }

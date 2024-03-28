@@ -1,5 +1,6 @@
 package com.yedam.java.app;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.yedam.java.books.Book;
@@ -17,6 +18,7 @@ public class BookRentManagement {
 	public BookRentManagement() {
 		brDAO = BookRentDAO.getInstance();
 		bookDAO = BookDAO.getInstance();
+		updateOverRent();
 	}
 
 	public void run() {
@@ -74,5 +76,15 @@ public class BookRentManagement {
 		int select = Management.inputNumber();
 		int result = brDAO.updateRented(select);
 		Management.dmlResult(result, "도서 반납");
+	}
+	// 연체정보 업데이트
+	private void updateOverRent() {
+		List<BookRent> list = brDAO.selectRentBook();
+		Date date = new Date(System.currentTimeMillis());
+		for (BookRent br : list) {
+			if (date.compareTo(br.getEnd()) > 0) {
+				brDAO.updateOverRent(br.getRentKey());
+			}
+		}
 	}
 }

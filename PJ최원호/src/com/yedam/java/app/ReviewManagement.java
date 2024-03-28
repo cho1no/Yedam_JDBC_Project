@@ -54,9 +54,9 @@ public class ReviewManagement {
 		menu += "5.리뷰삭제 ";
 		menu += "9.뒤로가기 ";
 
-		System.out.println("======================================");
+		System.out.println("======================== menu ========================");
 		System.out.println(menu);
-		System.out.println("======================================");
+		System.out.println("======================================================");
 	}
 	
 	// 책별 리뷰 목록

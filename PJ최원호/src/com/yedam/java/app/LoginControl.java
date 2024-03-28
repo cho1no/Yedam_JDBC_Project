@@ -60,12 +60,20 @@ public class LoginControl {
 		// result print
 		if (result > 0) { // succ
 			System.out.println("성공적으로 가입되었습니다.");
+		} else if (result == -1) {
+			showFail();
+			System.out.println("아이디와 비밀번호엔 한글사용이 불가합니다.");
+		} else if (result == -2) {
+			showFail();
+			System.out.println("전화번호를 확인해주세요.");
 		} else { // fail
-			System.out.println("정상적으로 가입되지 않았습니다.");
-			System.out.println("아이디가 중복이거나 이미 가입된 전화번호입니다.");
+			showFail();
+			System.out.println("이미 존재하는 아이디 또는 전화번호입니다.");
 		}
 	}
-
+	private void showFail() {
+		System.out.println("정상적으로 가입되지 않았습니다.");
+	}
 	private void login() {
 		System.out.println("==========로그인==========");
 		// 아이디와 비밀번호 입력

@@ -63,9 +63,16 @@ public class MemberDAO extends DAO {
 					   + "( ?, ?, ? )";
 			pstmt = conn.prepareStatement(sql);
 			
+			if (checkKor(member.getMemId()) || checkKor(member.getMemPw())) {
+				return -1;
+			}
+			String memTel = telNumSet(member.getMemTel());
+			if (memTel == null) {
+				return -2;
+			}
 			pstmt.setString(1, member.getMemId());
 			pstmt.setString(2, member.getMemPw());
-			pstmt.setString(3, member.getMemTel());
+			pstmt.setString(3, memTel);
 			
 			result = pstmt.executeUpdate();
 
@@ -75,5 +82,38 @@ public class MemberDAO extends DAO {
 			disconnect();
 		}
 		return result;
+	}
+	private static boolean checkKor(String kor) {
+	    for (int i = 0 ; i < kor.length() ; i++) {
+	    	if (kor.charAt(i) >= 'ㄱ' && kor.charAt(i) <= 'ㅎ') {
+	    		return true;
+	    	}
+	        if (kor.charAt(i) >= '가' && kor.charAt(i) <= '힣') {
+	            return true;
+	        }
+	    } return false;
+	}
+	private String telNumSet(String tel) {
+		String t = tel;
+		t = t.replace("-", "");
+		t = t.replace(" ", "");
+		t = t.replace(".", "");
+		t = t.replace("/", "");
+		if (telNumCheck(t)) {
+			return toTelNum(t);
+		}
+		return null;
+	}
+	private String toTelNum(String tel) {
+		String t = tel.substring(0, 3) + "-" + tel.substring(3, 7) + "-" + tel.substring(7, 11);
+		return t;
+	}
+	private boolean telNumCheck(String tel) {
+		if (tel.substring(0,2).equals("01")) {
+			if (tel.length() == 11) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

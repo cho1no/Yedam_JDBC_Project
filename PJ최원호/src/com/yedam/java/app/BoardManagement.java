@@ -30,8 +30,8 @@ public class BoardManagement {
 		menu += "2.공지사항 ";
 		menu += "9.뒤로가기 ";
 		
-		System.out.println("===");
+		System.out.println("============== menu ==============");
 		System.out.println(menu);
-		System.out.println("===");
+		System.out.println("==================================");
 	}
 }

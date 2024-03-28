@@ -57,9 +57,9 @@ public class NoticeManagement {
 		}
 		menu += "9.뒤로가기 ";
 
-		System.out.println("==================================");
+		System.out.println("================= menu =================");
 		System.out.println(menu);
-		System.out.println("==================================");
+		System.out.println("========================================");
 	}
 
 	// 공지사항 목록 보기

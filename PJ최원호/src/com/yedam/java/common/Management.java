@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public final class Management {
 	static Scanner sc = new Scanner(System.in);
-	public static final int BOOK_TITLE_LEN = 24;
+	
+	public static final int BOOK_TITLE_LEN = 30;
 	public static final int BOOK_ID_LEN = 6;
 	public static final int BOOK_WRITER_LEN = 20;
 	public static final int BOOK_INVENTORY_LEN = 5;
@@ -77,13 +78,13 @@ public final class Management {
 					  + setLength("재고", BOOK_INVENTORY_LEN) + "\t | "
 					  + "등록일";
 		} else if (title == "BookRent") {
-			listTitle = setLength("대여번호", KEY_LEN-1) + " | "
+			listTitle = setLength("대여번호", KEY_LEN) + "| "
 					  + setLength("도서번호", BOOK_ID_LEN) + " | "
 					  + setLength("도서이름", BOOK_TITLE_LEN) + "\t | "
 					  + setLength("도서저자", BOOK_WRITER_LEN) + "\t | "
 					  + setLength("빌린사람", USER_ID_LEN) + "\t | "
-					  + "대여일       | "
-					  + "반납일       | "
+					  + "대여일      | "
+					  + "반납일      | "
 					  + "반납여부";
 		} else if (title == "Notice") {
 			listTitle = setLength("글번호", KEY_LEN+2) +  " | "
