@@ -59,7 +59,7 @@ public class BookRentDAO extends DAO{
 		}
 		return list;
 	}
-	// 사용자 도서 대여기록 조회
+	// 사용자 도서 대여기록 조회 (메소드 재정의 - 오버로딩)
 	public List<BookRent> selectRentBook(boolean isAll) {
 		List<BookRent> list = new ArrayList<>();
 		try {

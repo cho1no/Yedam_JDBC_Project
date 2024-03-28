@@ -87,16 +87,16 @@ CREATE TABLE book_rental_list
     , renter VARCHAR2(20 byte) NOT NULL
     , start_rent DATE DEFAULT sysdate
     , end_rent DATE DEFAULT TRUNC(sysdate+14)
-    , isReturn NUMBER(1, 0) DEFAULT 0
+    , isReturn NUMBER(2, 0) DEFAULT 0
     , FOREIGN KEY(b_no) REFERENCES books(b_no)
     , FOREIGN KEY(renter) REFERENCES members(mem_id)
 );
 CREATE SEQUENCE rental_list_seq
         NOCYCLE;
-INSERT INTO book_rental_list(rent_key, b_no, renter, isReturn)
-VALUES(rental_list_seq.NEXTVAL, 101, 'admin', 1);
-INSERT INTO book_rental_list(rent_key, b_no, renter, isReturn)
-VALUES(rental_list_seq.NEXTVAL, 102, 'admin', 1);
+INSERT INTO book_rental_list(rent_key, b_no, renter, start_rent, end_rent)
+VALUES(rental_list_seq.NEXTVAL, 101, 'admin', TO_DATE('24-01-15', 'yy-mm-dd'), TO_DATE('24-01-29', 'yy-mm-dd'));
+INSERT INTO book_rental_list(rent_key, b_no, renter, start_rent, end_rent)
+VALUES(rental_list_seq.NEXTVAL, 102, 'admin', TO_DATE('24-01-18', 'yy-mm-dd'), TO_DATE('24-02-02', 'yy-mm-dd'));
 INSERT INTO book_rental_list(rent_key, b_no, renter)
 VALUES(rental_list_seq.NEXTVAL, 116, 'admin');
 INSERT INTO book_rental_list(rent_key, b_no, renter)
