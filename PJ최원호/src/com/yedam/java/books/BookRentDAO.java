@@ -20,7 +20,7 @@ public class BookRentDAO extends DAO{
 	}
 
 	// 메소드
-	// 도서 대여기록 조회
+	// 전체 도서 대여기록
 	public List<BookRent> selectRentBook() {
 		List<BookRent> list = new ArrayList<>();
 		try {
