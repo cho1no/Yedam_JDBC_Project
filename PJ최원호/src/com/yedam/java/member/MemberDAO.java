@@ -3,6 +3,7 @@ package com.yedam.java.member;
 import java.sql.SQLException;
 
 import com.yedam.java.common.DAO;
+import com.yedam.java.common.Management;
 
 public class MemberDAO extends DAO {
 	// 싱글톤
@@ -63,7 +64,7 @@ public class MemberDAO extends DAO {
 					   + "( ?, ?, ? )";
 			pstmt = conn.prepareStatement(sql);
 			
-			if (checkKor(member.getMemId()) || checkKor(member.getMemPw())) {
+			if (Management.getKorCnt(member.getMemId()) > 0 || Management.getKorCnt(member.getMemPw())>0) {
 				return -1;
 			}
 			String memTel = telNumSet(member.getMemTel());
@@ -82,16 +83,6 @@ public class MemberDAO extends DAO {
 			disconnect();
 		}
 		return result;
-	}
-	private static boolean checkKor(String kor) {
-	    for (int i = 0 ; i < kor.length() ; i++) {
-	    	if (kor.charAt(i) >= 'ㄱ' && kor.charAt(i) <= 'ㅎ') {
-	    		return true;
-	    	}
-	        if (kor.charAt(i) >= '가' && kor.charAt(i) <= '힣') {
-	            return true;
-	        }
-	    } return false;
 	}
 	private String telNumSet(String tel) {
 		String t = tel;

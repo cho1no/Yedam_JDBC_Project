@@ -48,9 +48,12 @@ public final class Management {
 		String formatter = String.format("%%%ds", (length - getKorCnt(str)) * -1);
 		return String.format(formatter, str);
 	}
-	private static int getKorCnt(String kor) {
+	public static int getKorCnt(String kor) {
 	    int cnt = 0;
 	    for (int i = 0 ; i < kor.length() ; i++) {
+	    	if (kor.charAt(i) >= 'ㄱ' && kor.charAt(i) <= 'ㅎ') {
+	    		cnt++;
+	    	}
 	        if (kor.charAt(i) >= '가' && kor.charAt(i) <= '힣') {
 	            cnt++;
 	        }
@@ -78,8 +81,8 @@ public final class Management {
 					  + setLength("재고", BOOK_INVENTORY_LEN) + "\t | "
 					  + "등록일";
 		} else if (title == "BookRent") {
-			listTitle = setLength("대여번호", KEY_LEN) + "| "
-					  + setLength("도서번호", BOOK_ID_LEN) + " | "
+			listTitle = setLength("대여번호", KEY_LEN-1) + "| "
+					  + setLength("도서번호", BOOK_ID_LEN-1) + " | "
 					  + setLength("도서이름", BOOK_TITLE_LEN) + "\t | "
 					  + setLength("도서저자", BOOK_WRITER_LEN) + "\t | "
 					  + setLength("빌린사람", USER_ID_LEN) + "\t | "
