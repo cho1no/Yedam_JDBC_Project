@@ -54,6 +54,4 @@ public class Notice {
 		text += noticeWriteDay;
 		return text;
 	}
-	
-	
 }
